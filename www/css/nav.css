@@ -1,0 +1,55 @@
+.nav {
+  position: fixed;
+  top: 0;
+  background-color: rgb(28, 28, 28);
+  transition: .35s;
+  width: 0;
+  height: 100%;
+  overflow-x: hidden;
+  color: white;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+  &::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+  &--show {
+    width: 30px;
+  }
+  &--open {
+    width: 280px;
+  }
+  &__search {
+    width: 240px;
+    height: 26px;
+    margin: 40px 20px 20px 20px;
+    color: rgb(238, 238, 238);
+    border: none;
+    background-color: rgb(18, 18, 18);
+    &__input {
+      padding: 0;
+      width: 88%;
+      color: inherit;
+      background-color: inherit;
+      border: none;
+      height: 100%;
+    }
+    &__button {
+      padding: 0;
+      color: inherit;
+      background-color: inherit;
+      width: 10%;
+      border: none;
+      height: 100%;
+    }
+  }
+  &__result {
+    margin: 0 20px 0 20px;
+  }
+}
