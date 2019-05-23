@@ -2,7 +2,8 @@
   "dependencies": {
     "node-sass": "latest",
     "postcss": "latest",
-    "autoprefixer": "latest"
+    "autoprefixer": "latest",
+    "ytdl-core": "latest"
   },
   "scripts": {
     "now-build": "node compiler.js"

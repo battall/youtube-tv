@@ -3,7 +3,7 @@ var autoprefixer = require('autoprefixer');
 var postcss = require('postcss');
 var sass = require("node-sass");
 
-var dir = "./dist/"
+var dir = "dist/"
 
 var cssFolder = "./www/css/"
 var css = fs
