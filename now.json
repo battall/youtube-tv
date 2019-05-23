@@ -3,6 +3,11 @@
   "version": 2,
   "alias": ["youtube.battal.tk"],
   "regions": ["bru"],
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build" }
+    { "src": "sources/*.js", "use": "@now/node" },
+    { "src": "dist/**", "use": "@now/static" }
+  ],
   "routes": [
     { "src": "/(.*)", "dest": "dist/$1"}
   ]
