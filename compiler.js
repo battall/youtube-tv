@@ -32,8 +32,7 @@ sass.render({ //first render with sass
     autoprefixerResult.warnings().forEach(function(warn) {
       console.warn(warn.toString());
     });
-    fs.mkdirSync(dir);
-    fs.writeFileSync(dir + "css.css", autoprefixerResult.css)
-    fs.writeFileSync(dir + "js.js", js)
+    fs.writeFileSync("css.css", autoprefixerResult.css)
+    fs.writeFileSync("js.js", js)
   });
 })
