@@ -1,9 +1,9 @@
 {
-  "name": "youtube-tv",
+  "name": "youtube",
   "version": 2,
   "alias": ["youtube.battal.tk"],
   "regions": ["bru"],
   "routes": [
-    {"src": "/(.*)", "dest": "/www/$1"}
+    { "src": "/(.*)", "dest": "dist/$1"}
   ]
 }

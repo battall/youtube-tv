@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "node-sass": "latest",
+    "postcss": "latest",
+    "autoprefixer": "latest"
+  },
+  "scripts": {
+    "now-build": "node compiler.js"
+  }
+}
