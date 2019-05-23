@@ -33,7 +33,7 @@ sass.render({ //first render with sass
       console.warn(warn.toString());
     });
     fs.mkdirSync(dir);
-    fs.createFileSync(dir + "css.css", autoprefixerResult.css)
-    fs.createFileSync(dir + "js.js", js)
+    fs.writeFileSync(dir + "css.css", autoprefixerResult.css)
+    fs.writeFileSync(dir + "js.js", js)
   });
 })
