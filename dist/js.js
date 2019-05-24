@@ -11,11 +11,9 @@ YoutubePlayer.config = {
   api: document.location.origin + "/source/youtube",
 }
 
-console.log("amk");
-
 YoutubePlayer.routes = {
-    search: YoutubePlayer.config.api + "/search",
-    get: YoutubePlayer.config.api + "/get"
+    search: YoutubePlayer.config.api + "?method=search",
+    get: YoutubePlayer.config.api + "?method=get"
 }
 
 YoutubePlayer.createElement = function(type, attributes, children) {
@@ -56,6 +54,7 @@ YoutubePlayer.toHHMMSS = function(secs) {
     })
     .join(":");
 }
+
 YoutubePlayer.nav = {
   elem: document.querySelector(".nav"),
   searchInput: document.querySelector(".nav__search__input"),
@@ -85,7 +84,7 @@ YoutubePlayer.nav.processResults = function(videos) { //refactor this.
       this.createElement("div", {
         class: "video-list__item",
         onclick: function() {
-          that.player.changeVideo(that.routes.get + "?id=" + this.id);
+          that.player.changeVideo(that.routes.get + "&id=" + this.id);
           that.nav.close();
         }.bind(item)
       }, [this.createElement("img", {
@@ -106,7 +105,7 @@ YoutubePlayer.nav.search = function(query) {
       nav.processResults(JSON.parse(xhttp.responseText));
     }
   };
-  xhttp.open("GET", this.routes.search + "?query=" + query, true);
+  xhttp.open("GET", this.routes.search + "&query=" + query, true);
   xhttp.send();
 }.bind(YoutubePlayer)
 
@@ -129,6 +128,7 @@ YoutubePlayer.nav.searchInput.addEventListener("keyup", function(event) {
 YoutubePlayer.nav.searchButton.addEventListener("click", function() {
   this.nav.search(this.nav.searchInput.value);
 }.bind(YoutubePlayer))
+
 YoutubePlayer.player = {
   elem: document.querySelector(".player"),
   title: document.querySelector(".player__title"),
