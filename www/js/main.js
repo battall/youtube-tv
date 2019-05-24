@@ -2,7 +2,7 @@ window.YoutubePlayer = {};
 
 YoutubePlayer.config = {
   host: document.location.origin,
-  api: document.location.origin + "/source/youtube",
+  api: document.location.origin + "/source/youtube.js",
 }
 
 YoutubePlayer.routes = {

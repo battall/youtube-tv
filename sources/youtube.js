@@ -43,6 +43,7 @@ const { parse } = require('url')
 
 module.exports = (req, res) => {
   const { query } = parse(req.url, true)
+  console.log(query)
   if(!yt[query.method]) return res.end("Source Not Found (dev)")
   yt[query.method](query).then(e => res.end(e)).catch(e => res.end(e))
 }
