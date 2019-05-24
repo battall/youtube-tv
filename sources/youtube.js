@@ -1,8 +1,9 @@
 var https = require('https');
 var querystring = require('querystring');
 var ytdl = require('ytdl-core')
+var yt = {};
 
-var request = (path, parser) => new Promise((resolve, reject) => {
+yt.request = (path, parser) => new Promise((resolve, reject) => {
   https.get({
     host: "www.youtube.com",
     path: path,
@@ -21,14 +22,12 @@ var request = (path, parser) => new Promise((resolve, reject) => {
   })
 })
 
-exports.get = json => ytdl.getInfo(json.id).then(info => {
-  return {
+yt.get = json => ytdl.getInfo(json.id).then(info => ({
     title: info.title,
     url: info.formats.filter(format => format.audioEncoding && format.encoding && format.container != "3gp")[0].url,
-  }
-})
+}))
 
-exports.search = json => request("/results?search_query=" + encodeURI(json.query) + "&pbj=1", function(json) {
+yt.search = json => request("/results?search_query=" + encodeURI(json.query) + "&pbj=1", function(json) {
   var videos = json[1].response.contents
     .twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer
     .contents[0].itemSectionRenderer.contents;
@@ -38,3 +37,12 @@ exports.search = json => request("/results?search_query=" + encodeURI(json.query
     thumbnail: video.thumbnail.thumbnails[video.thumbnail.thumbnails.length - 1].url
   }));
 })
+
+//nowsh requests
+const { parse } = require('url')
+
+module.exports = (req, res) => {
+  const { query } = parse(req.url, true)
+  if(!yt[query.method]) res.end("Source Not Found (dev)")
+  yt[query.method](query).then(res.end).catch(res.end)
+}

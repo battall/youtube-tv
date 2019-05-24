@@ -5,11 +5,9 @@ YoutubePlayer.config = {
   api: document.location.origin + "/source/youtube",
 }
 
-console.log("amk");
-
 YoutubePlayer.routes = {
-    search: YoutubePlayer.config.api + "/search",
-    get: YoutubePlayer.config.api + "/get"
+    search: YoutubePlayer.config.api + "?method=search",
+    get: YoutubePlayer.config.api + "?method=get"
 }
 
 YoutubePlayer.createElement = function(type, attributes, children) {

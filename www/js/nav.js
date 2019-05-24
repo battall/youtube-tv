@@ -27,7 +27,7 @@ YoutubePlayer.nav.processResults = function(videos) { //refactor this.
       this.createElement("div", {
         class: "video-list__item",
         onclick: function() {
-          that.player.changeVideo(that.routes.get + "?id=" + this.id);
+          that.player.changeVideo(that.routes.get + "&id=" + this.id);
           that.nav.close();
         }.bind(item)
       }, [this.createElement("img", {
@@ -48,7 +48,7 @@ YoutubePlayer.nav.search = function(query) {
       nav.processResults(JSON.parse(xhttp.responseText));
     }
   };
-  xhttp.open("GET", this.routes.search + "?query=" + query, true);
+  xhttp.open("GET", this.routes.search + "&query=" + query, true);
   xhttp.send();
 }.bind(YoutubePlayer)
 
