@@ -27,7 +27,7 @@ yt.get = json => ytdl.getInfo(json.id).then(info => ({
     url: info.formats.filter(format => format.audioEncoding && format.encoding && format.container != "3gp")[0].url,
 }))
 
-yt.search = json => request("/results?search_query=" + encodeURI(json.query) + "&pbj=1", function(json) {
+yt.search = json => yt.request("/results?search_query=" + encodeURI(json.query) + "&pbj=1", function(json) {
   var videos = json[1].response.contents
     .twoColumnSearchResultsRenderer.primaryContents.sectionListRenderer
     .contents[0].itemSectionRenderer.contents;
@@ -43,6 +43,6 @@ const { parse } = require('url')
 
 module.exports = (req, res) => {
   const { query } = parse(req.url, true)
-  if(!yt[query.method]) res.end("Source Not Found (dev)")
-  yt[query.method](query).then(res.end).catch(res.end)
+  if(!yt[query.method]) return res.end("Source Not Found (dev)")
+  yt[query.method](query).then(e => res.end(e)).catch(e => res.end(e))
 }
