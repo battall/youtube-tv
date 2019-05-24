@@ -2,8 +2,9 @@ var fs = require('fs');
 var autoprefixer = require('autoprefixer');
 var postcss = require('postcss');
 var sass = require("node-sass");
+var minify = require('html-minifier').minify;
 
-var dir = "dist/"
+var dir = "./dist/"
 
 var cssFolder = "./www/css/"
 var css = fs
@@ -32,7 +33,8 @@ sass.render({ //first render with sass
     autoprefixerResult.warnings().forEach(function(warn) {
       console.warn(warn.toString());
     });
-    fs.writeFileSync("css.css", autoprefixerResult.css)
-    fs.writeFileSync("js.js", js)
+    fs.writeFileSync(dir + "index.html", minify(fs.readFileSync("./www/index.html").toString()))
+    fs.writeFileSync(dir + "css.css", autoprefixerResult.css)
+    fs.writeFileSync(dir + "js.js", js)
   });
 })
